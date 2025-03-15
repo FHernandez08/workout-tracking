@@ -24,7 +24,9 @@ response = requests.post(url= nutrition_endpoint,headers=headers, json=exercise_
 result = response.json()
 
 sheety_endpoint = "https://api.sheety.co/31d6797728706171dba074aea445aa54/workoutTracking/workouts"
-
+sheety_headers = {
+    "Authorization": "Basic ZmlkZWw6dmFqbGRidmFlaXJ1dmJlcnZh"
+}
 today = datetime.now()
 current_time = today.time()
 
@@ -42,5 +44,5 @@ for exercise in result["exercises"]:
         }
     }
 
-row_response = requests.post(url=sheety_endpoint, json=sheety_inputs)
+row_response = requests.post(headers=sheety_headers, url=sheety_endpoint, json=sheety_inputs)
 print(row_response.text)
